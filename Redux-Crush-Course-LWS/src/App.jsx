@@ -4,7 +4,8 @@ function App() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-indigo-950">
+    <div className="flex flex-col gap-8 justify-center items-center min-h-screen bg-indigo-950">
+    <Counter/>
     <Counter/>
     </div>
   );

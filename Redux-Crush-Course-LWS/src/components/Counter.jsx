@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Button from "./Button"
+import Count from "./Count"
 
 
 const Counter = () => {
@@ -22,7 +23,7 @@ const Counter = () => {
       <h2 className='mb-8 text-center text-4xl'>Simple Counter Application</h2>
 
       <div className="bg-white shadow-md p-8 rounded-md flex flex-col justify-center items-center">
-        <h3 className="text-center text-5xl font-semibold">{count}</h3>
+     <Count count={count}/>
         <div className="mt-8 flex gap-4">
          <Button type='' handler={handleIncrement} text='Increment' />
          <Button type='danger' handler={handleDecrement} text='Decrement' />
