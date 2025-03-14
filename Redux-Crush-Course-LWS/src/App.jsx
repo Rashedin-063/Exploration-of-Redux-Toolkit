@@ -10,19 +10,34 @@ const initialCounters = [
 
 function App() {
 
-   const [counters, setCounters] = useState(initialCounters)
+  const [counters, setCounters] = useState(initialCounters)
+  const totalCount = counters.reduce((acc , currVal) => acc + currVal.value , 0)
   
   const handleIncrement = (counterId) => {
-      return alert(counterId)
-      setCount(prevCount => prevCount + 1)
+    
+   const updatedCounters = counters.map(counter => {
+      if (counter.id === counterId) { 
+        return {
+          ...counter,
+          value: counter.value + 1
+       }
+      }
+      return counter
+   })
+    
+    setCounters(updatedCounters)
     }
   const handleDecrement = (counterId) => {
-         return alert(counterId);
-      if (count > 0) {
-        setCount(prevCount => prevCount - 1)
-      } else {
-        setCount(0)
-      }
+        const updatedCounters =    counters.map((counter) => {
+              if (counter.id === counterId) {
+                return {
+                  ...counter,
+                  value: counter.value - 1,
+                };
+              }
+              return counter;
+        }); 
+     setCounters(updatedCounters);
     }
 
 
@@ -40,7 +55,7 @@ function App() {
         />
       ))}
 
-      <Stats totalCount={10} />
+      <Stats totalCount={totalCount} />
     </div>
   );
 }
