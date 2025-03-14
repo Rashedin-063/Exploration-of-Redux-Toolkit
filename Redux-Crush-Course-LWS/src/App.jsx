@@ -10,13 +10,13 @@ function App() {
   const dispatch = useDispatch()
 
   const totalCount = counters.reduce((acc , currVal) => acc + currVal.value , 0)
-  
+   
   const handleIncrement = (counterId) => {
     dispatch(increment(counterId));
    
     }
   const handleDecrement = (counterId) => {
-        dispatch(decrement(counterId))
+        dispatch(decrement(counterId ))
     }
 
 
