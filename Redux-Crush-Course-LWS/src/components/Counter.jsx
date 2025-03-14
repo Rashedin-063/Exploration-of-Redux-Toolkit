@@ -19,8 +19,8 @@ const Counter = () => {
   }
 
   return (
-    <main className="bg-purple-200 p-16 rounded-md ">
-      <h2 className='mb-8 text-center text-4xl'>Simple Counter Application</h2>
+    <main className="bg-purple-200 px-8 py-4 rounded-md ">
+     
 
       <div className="bg-white shadow-md p-8 rounded-md flex flex-col justify-center items-center">
      <Count count={count}/>
