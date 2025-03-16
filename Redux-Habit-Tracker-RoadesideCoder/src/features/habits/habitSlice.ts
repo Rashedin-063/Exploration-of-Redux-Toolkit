@@ -41,14 +41,10 @@ const habitSlice = createSlice({
       action: PayloadAction<{ id: string; date: string }>
     ) => {
       const habit = state.habits.find(h => h.id === action.payload.id);
-
-      console.log(habit)
-      
+    
 
       if (habit) {
         const index = habit.completedDates.indexOf(action.payload.date);
-
-        console.log(index)
         
 
         if (index > -1) { 
@@ -58,9 +54,12 @@ const habitSlice = createSlice({
         }
       }
     },
+    removeHabit: (state, action: PayloadAction<{id: string}>) => {
+        state.habits = state.habits.filter(h => h.id !== action.payload.id);    
+    }
   },
 });
 
 
 export default habitSlice.reducer;
-export const {addHabit, toggleHabit} = habitSlice.actions
+export const {addHabit, toggleHabit, removeHabit} = habitSlice.actions
