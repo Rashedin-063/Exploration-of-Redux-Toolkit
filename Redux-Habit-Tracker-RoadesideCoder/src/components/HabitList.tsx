@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
-import { Box, Button, Paper, Stack, Typography } from "@mui/material"
+import { Box, Button, LinearProgress, Paper, Stack, Typography } from "@mui/material"
 import Grid from '@mui/material/Grid2';
 import { CheckCircle, Delete } from "@mui/icons-material";
 import { removeHabit, toggleHabit } from "../features/habits/habitSlice";
@@ -88,6 +88,7 @@ const HabitList = () => {
               <Typography variant='body2'>
                 Current Streak : {getStreak(habit)} days
               </Typography>
+              <LinearProgress variant="determinate" value={(getStreak(habit) / 10) * 100} sx={{mt: 1}}/>
             </Box>
           </Paper>
         );
