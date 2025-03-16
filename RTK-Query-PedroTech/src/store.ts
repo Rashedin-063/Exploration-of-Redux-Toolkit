@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { setupListener } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { jsonPlaceholderApi } from "./services/jsonPlaceholderApi";
 
-const configrueStore = configureStore({
+export const store = configureStore({
   reducer: {
-    
-  }
-})
+    [jsonPlaceholderApi.reducerPath]: jsonPlaceholderApi.enhanceEndpoints,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(jsonPlaceholderApi.middleware)
+});
+
+setupListeners(store.dispatch)

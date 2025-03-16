@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Post } from "../types/types";
 
 
@@ -8,7 +8,7 @@ export const jsonPlaceholderApi = createApi({
     baseUrl: 'https://jsonplaceholder.typicode.com/',
   }),
   endpoints: (build) => ({
-    getPosts: build.query<Post, string>({
+    getPosts: build.query<Post[], void>({
       query: () => 'posts'
     }),
     createPosts: build.mutation<Post, string>({
@@ -21,3 +21,6 @@ export const jsonPlaceholderApi = createApi({
     }),
   })
 });
+
+
+export const { useGetPostsQuery, useCreatePostsMutation } = jsonPlaceholderApi;
