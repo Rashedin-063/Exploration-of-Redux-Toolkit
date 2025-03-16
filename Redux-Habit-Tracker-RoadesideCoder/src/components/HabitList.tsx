@@ -3,7 +3,7 @@ import { AppDispatch, RootState } from "../store"
 import { Box, Button, LinearProgress, Paper, Stack, Typography } from "@mui/material"
 import Grid from '@mui/material/Grid2';
 import { CheckCircle, Delete } from "@mui/icons-material";
-import { removeHabit, toggleHabit } from "../features/habits/habitSlice";
+import { Habit, removeHabit, toggleHabit } from "../features/habits/habitSlice";
 
 
 const HabitList = () => {

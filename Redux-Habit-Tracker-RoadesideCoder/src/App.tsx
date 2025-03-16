@@ -1,6 +1,7 @@
 import { Container, Typography } from "@mui/material"
 import AddHabitForm from "./components/AddHabitForm"
 import HabitList from "./components/HabitList"
+import HabitStats from './components/HabitStats';
 
 const App = () => {
   return (
@@ -9,7 +10,8 @@ const App = () => {
         Habit Tracker
       </Typography>
       <AddHabitForm />
-      <HabitList/>
+      <HabitList />
+      <HabitStats/>
    </Container>
   )
 }
