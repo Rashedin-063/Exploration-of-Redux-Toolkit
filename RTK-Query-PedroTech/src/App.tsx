@@ -1,18 +1,37 @@
-import { useGetPostsQuery } from "./services/jsonPlaceholderApi"
+import { useState } from "react";
+import { useCreatePostMutation, useGetPostsQuery } from "./services/jsonPlaceholderApi"
 
 const App = () => {
 
-  const { data, error, isLoading } = useGetPostsQuery()
+    const [newPost, setNewPost] = useState<{
+      title: string;
+      body: string;
+      id: number;
+    }>({ title: '', body: '', id: 99999 });
+
+  const { data, error, isLoading } = useGetPostsQuery();
+
+   const [ createPost, {isLoading: isMutationLoading, error: mutationError} ] = useCreatePostMutation()
+ 
   
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error happens!</p>
+
+
+  if (isMutationLoading) return <p>Post creation loading...</p>
+  if (mutationError) return <p>Error happens for post creation</p>
   
 
   // console.log(data);
+
+  const handleCreatePost = async() => {
+    await createPost(newPost)
+    refetch()
+  }
   
 
   return (
-    <div>
+ 
       <div
         style={{
           width: '100vw',
@@ -23,6 +42,26 @@ const App = () => {
           paddingTop: '2rem',
         }}
       >
+        <div style={{display: 'flex', flexDirection: 'column', width: '435px', gap: '8px', marginBottom: '2rem', backgroundColor: '#a5a5a5', padding: '16px'}}>
+          <input
+            type='text'
+            placeholder='Title...'
+            onChange={(e) =>
+              setNewPost((prev) => ({ ...prev, title: e.target.value }))
+            }
+          />
+          <input
+            type='text'
+            placeholder='Body...'
+            onChange={(e) =>
+              setNewPost((prev) => ({ ...prev, body: e.target.value }))
+            }
+          />
+          <button onClick={handleCreatePost} disabled={isMutationLoading}>
+            {' '}
+            Create Post{' '}
+          </button>
+        </div>
         {data?.map((post) => (
           <div
             style={{
@@ -31,7 +70,7 @@ const App = () => {
               marginBottom: '16px',
               width: '400px',
               borderRadius: '8px',
-              backgroundColor: 'rebeccapurple'
+              backgroundColor: 'rebeccapurple',
             }}
           >
             <p style={{ fontSize: '18px' }}>
@@ -49,7 +88,7 @@ const App = () => {
           </div>
         ))}
       </div>
-    </div>
+ 
   );
 }
 export default App
