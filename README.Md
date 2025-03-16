@@ -3,3 +3,4 @@
 ### I have followed these lessons throughout the journey
 
 - React Redux Crash Course (Youtube tutorial - Learn with Sumit)
+- Redux Todo Project (RoadSideCoder)
