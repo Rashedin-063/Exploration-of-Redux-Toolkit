@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState} from "../store";
 import { useEffect } from "react";
-import { fetchHabits, Habit } from "../features/habits/habitSlice";
+import { fetchHabits} from "../features/habits/habitSlice";
 import { Paper, Stack, Typography } from "@mui/material";
+import { getStreak } from "./HabitList";
 
 const HabitStats = () => {
 
@@ -13,7 +14,34 @@ const HabitStats = () => {
     dispatch(fetchHabits());
   }, [dispatch])
 
-  //  const getTotalHabits = () => habits.length;
+  const getCompletedToday = () => {
+    const today = new Date().toISOString().split('T')[0]
+    return habits.filter((habit) => habit.completedDates.includes(today)).length;
+  }
+  
+  const getLongestStreak = () => {
+    return Math.max(...habits.map((habit) => getStreak(habit)), 0)
+  }
+
+  // const getLongestStreak = () => {
+  //    const getStreak = (habit: Habit) => {
+  //     let streak = 0;
+  //     const currentDate = new Date();
+
+  //     while (true) {
+  //       const dateString = currentDate.toISOString().split("T")[0];
+  //       if (habit.completedDates.includes(dateString)) {
+  //         streak++;
+  //         currentDate.setDate(currentDate.getDate() - 1);
+  //       } else {
+  //         break;
+  //       }
+  //     }
+
+  //     return streak;
+  //   };
+  //   return Math.max(...habits.map(getStreak), 0);
+  // }
 
 
   
@@ -30,6 +58,13 @@ const HabitStats = () => {
       <Stack spacing={1}>
         <Typography variant='body1'>
           Total Habits: {habits.length}
+        </Typography>
+       
+        <Typography variant='body1'>
+          Completed Today: {getCompletedToday()}
+        </Typography>
+        <Typography variant='body1'>
+          Longest Streak: {getLongestStreak()}
         </Typography>
        
       </Stack>
