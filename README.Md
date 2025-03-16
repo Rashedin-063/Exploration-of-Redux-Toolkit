@@ -4,3 +4,4 @@
 
 - React Redux Crash Course (Youtube tutorial - Learn with Sumit)
 - Redux Todo Project (RoadSideCoder)
+- RTK query tutorial (PedroTech)
