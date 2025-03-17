@@ -1,3 +1,4 @@
+import PokemonCard from "./component/PokemonCard";
 import { useGetPokemonByNameQuery } from "./services/pokemonApi";
 
 
@@ -17,7 +18,7 @@ if(!data) return null
     <div className="text-3xl font-semibold text-center">
       {data.name} is a {data.types[0].type.name} type Pokémon!
 
-      {}
+      <PokemonCard pokemon={data} />
     </div>
   )
 }
