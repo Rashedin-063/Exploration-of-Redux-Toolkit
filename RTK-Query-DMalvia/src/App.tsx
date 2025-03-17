@@ -16,7 +16,6 @@ if(!data) return null
 
   return (
     <div className="text-3xl font-semibold text-center">
-      {data.name} is a {data.types[0].type.name} type Pokémon!
 
       <PokemonCard pokemon={data} />
     </div>

@@ -10,7 +10,7 @@ const PokemonCard = ({ pokemon }: Pokemon) => {
         {pokemon.name}
       </h2>
       <img
-        className='w-32 h-32 mx-auto'
+        className='w-32 h-32 mx-auto -my-4'
         src={pokemon.sprites.front_default}
         alt={pokemon.name}
       />
@@ -47,19 +47,18 @@ const PokemonCard = ({ pokemon }: Pokemon) => {
         <h3 className='text-lg font-semibold'>Stats:</h3>
         <ul className='list-disc list-inside text-gray-700'>
           {pokemon.stats.map((stat, index) => (
-            <li key={index} className='capitalize'>
+            <li key={index} className='capitalize text-sm'>
               {stat.stat.name}: {stat.base_stat}
             </li>
           ))}
         </ul>
       </div>
 
-      <div className='mt-4 text-center'>
+      <div className='mt-4 flex justify-center'>
         <audio controls>
           <source src={pokemon.cries.latest} type='audio/ogg' />
           Your browser does not support the audio element.
         </audio>
-        <p className='text-sm text-gray-500'>Pokémon cry</p>
       </div>
     </div>
   );
